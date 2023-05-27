@@ -8,6 +8,7 @@ import AccountItem from '../../../AccountItem';
 import { SearchIcon } from '~/components/Icons';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -17,10 +18,13 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    //debounce
+    const debounced = useDebounce(searchValue, 500);
+    console.log(debounced);
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]); // xóa result khi không tìm thấy value
             return;
         } // thoát useEffect khi không có searchValue || dấu space
@@ -28,7 +32,7 @@ function Search() {
         //mã hóa các ký tự gây hiểu nhầm thành hợp lệ.
         fetch(
             `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-                searchValue,
+                debounced,
             )}&type=less`,
         )
             .then((res) => res.json())
@@ -39,7 +43,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue('');

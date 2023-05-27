@@ -18,7 +18,7 @@ const publicRoutes = [
         component: Following,
     },
     {
-        path: '/:nickname',
+        path: '/:nickname', //khi follow vào tìm kiếm sẽ dẫn đến Profile component.
         component: Profile,
     },
     {
