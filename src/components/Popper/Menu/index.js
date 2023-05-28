@@ -10,7 +10,7 @@ import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
-function Menu({ children, items = [], onChange }) {
+function Menu({ children, items = [], hideOnClick = false, onChange }) {
     // Phần được hiển thị sẽ được thêm vào cuối mảng.
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
@@ -42,6 +42,7 @@ function Menu({ children, items = [], onChange }) {
             delay={[0, 700]}
             offset={[12, 8]} //[width, height]
             placement="bottom-end"
+            hideOnClick={hideOnClick} //click vào avatar không bị hide tippy.
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
