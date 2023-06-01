@@ -1,34 +1,34 @@
 //Layouts
 
-import { HeaderOnly } from '~/components/Layout';
+import { HeaderOnly } from '~/layouts';
 import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 import Profile from '~/pages/Profile';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 // public routes
 const publicRoutes = [
     {
-        path: routesConfig.home,
+        path: config.routes.home,
         component: Home,
     },
     {
-        path: routesConfig.following,
+        path: config.routes.following,
         component: Following,
     },
     {
-        path: routesConfig.profile, //khi follow vào tìm kiếm sẽ dẫn đến Profile component.
+        path: config.routes.profile, //khi follow vào tìm kiếm sẽ dẫn đến Profile component.
         component: Profile,
     },
     {
-        path: routesConfig.upload,
+        path: config.routes.upload,
         component: Upload,
         layout: HeaderOnly,
     },
     {
-        path: routesConfig.search,
+        path: config.routes.search,
         component: Search,
         layout: null,
     },

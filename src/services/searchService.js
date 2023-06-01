@@ -1,4 +1,4 @@
-import * as request from '~/routes/utils/request';
+import * as request from '~/utils/httpRequest';
 
 //replace request to sync,await
 export const search = async (q, type) => {
